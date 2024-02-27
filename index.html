@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice Local!</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    inter: ['Inter', 'sans-serif'],
+                },
+                animation: {
+                    'text-slide': 'text-slide 12.5s cubic-bezier(0.83, 0, 0.17, 1) infinite',
+                    'border-bg': 'border-bg ease infinite'
+                },
+                keyframes: {
+                    'text-slide': {
+                        '0%, 16%': {
+                            transform: 'translateY(0%)',
+                        },
+                        '20%, 36%': {
+                            transform: 'translateY(-16.66%)',
+                        },
+                        '40%, 56%': {
+                            transform: 'translateY(-33.33%)',
+                        },
+                        '60%, 76%': {
+                            transform: 'translateY(-50%)',
+                        },
+                        '80%, 96%': {
+                            transform: 'translateY(-66.66%)',
+                        },
+                        '100%': {
+                            transform: 'translateY(-83.33%)',
+                        },
+                    },
+                    'border-bg': {
+                        '0%, 100%': { 
+                            backgroundPosition: '0% 50%' 
+                        },
+                        '50%': { 
+                            backgroundPosition: '100% 50%' 
+                        },
+                    },
+                
+                },
+            }
+        },
+    };
+</script>
+
+<style>
+    .text-shadow-hover-white {
+        text-shadow:none;
+        color: rgba(99, 102, 241,1) !important;
+    }
+    
+    .text-shadow-hover-white:hover {
+        text-shadow:0 0 1px white;
+        
+    }
+    
+    .text-shadow-hover-white .animate-text-slide li {
+        color:white !important;
+    }
+    
+    .text-shadow-hover-white:hover .animate-text-slide li {
+        
+        color:#222 !important;
+    }
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    #stockTicker {
+        animation: scroll 60s linear infinite;
+    }
+    .tradingview-widget-container {
+        position:absolute;
+        right:5px;
+        top:10px;
+        bottom:5px;
+    }
+    .tradingview-widget-copyright {
+        display:none;
+    }
+</style>
+</head>
+<body>
+    <div class="relative font-inter antialiased">
+
+    <main class="animate-border-bg text-shadow-hover-white flex inline-block bg-white from-pink-500 via-red-500 to-yellow-500 bg-[length:_400%_400%] p-0.5 [animation-duration:_6s] bg-gradient-to-r relative min-h-screen flex flex-col justify-center bg-slate-900 overflow-hidden">
+        <div class="w-full max-w-6xl bg-slate-900 hover:bg-transparent transition-colors duration-500 ease-in-out mx-auto px-4 md:px-6 py-24" style="
+    /* background: #00000061; */
+    /* width: 100%; */
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* background: transparent; */
+">
+            <div class="text-center">
+
+                <!-- Sliding Text animation  -->
+                <div class="font-extrabold text-3xl md:text-4xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 to-50% to-slate-200"> 
+                    <span class="inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden">
+                        <ul class="block animate-text-slide text-left leading-tight [&_li]:block">
+                            <li>Slice</li>
+                            <li>of</li>
+                            <li>bytes</li>
+                            <li class="opacity-0">!--!</li>
+                            <li class="opacity-0">!--!</li>
+                            <li aria-hidden="true">Slice</li>
+                        </ul>
+                    </span>
+                </div>
+                <!-- End: Sliding Text animation  -->
+                
+            </div>
+
+        </div>
+        <footer class="bg-gray-800 text-white">
+            <div id="stockTicker" class="flex overflow-hidden whitespace-nowrap space-x-4 p-4"></div>
+        </footer>
+    </main>
+    
+
+
+</div>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "colorTheme": "dark",
+  "dateRange": "12M",
+  "showChart": true,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": true,
+  "showFloatingTooltip": false,
+  "width": "400",
+  "height": "550",
+  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+  "gridLineColor": "rgba(240, 243, 250, 0)",
+  "scaleFontColor": "rgba(106, 109, 120, 1)",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+  "tabs": [
+    {
+      "title": "Indices",
+      "symbols": [
+        {
+          "s": "FOREXCOM:SPXUSD",
+          "d": "S&P 500 Index"
+        },
+        {
+          "s": "FOREXCOM:NSXUSD",
+          "d": "US 100 Cash CFD"
+        },
+        {
+          "s": "FOREXCOM:DJI",
+          "d": "Dow Jones Industrial Average Index"
+        },
+        {
+          "s": "INDEX:NKY",
+          "d": "Nikkei 225"
+        },
+        {
+          "s": "INDEX:DEU40",
+          "d": "DAX Index"
+        },
+        {
+          "s": "FOREXCOM:UKXGBP",
+          "d": "FTSE 100 Index"
+        }
+      ],
+      "originalTitle": "Indices"
+    },
+    {
+      "title": "Futures",
+      "symbols": [
+        {
+          "s": "CME_MINI:ES1!",
+          "d": "S&P 500"
+        },
+        {
+          "s": "CME:6E1!",
+          "d": "Euro"
+        },
+        {
+          "s": "COMEX:GC1!",
+          "d": "Gold"
+        },
+        {
+          "s": "NYMEX:CL1!",
+          "d": "WTI Crude Oil"
+        },
+        {
+          "s": "NYMEX:NG1!",
+          "d": "Gas"
+        },
+        {
+          "s": "CBOT:ZC1!",
+          "d": "Corn"
+        }
+      ],
+      "originalTitle": "Futures"
+    },
+    {
+      "title": "Bonds",
+      "symbols": [
+        {
+          "s": "CBOT:ZB1!",
+          "d": "T-Bond"
+        },
+        {
+          "s": "CBOT:UB1!",
+          "d": "Ultra T-Bond"
+        },
+        {
+          "s": "EUREX:FGBL1!",
+          "d": "Euro Bund"
+        },
+        {
+          "s": "EUREX:FBTP1!",
+          "d": "Euro BTP"
+        },
+        {
+          "s": "EUREX:FGBM1!",
+          "d": "Euro BOBL"
+        }
+      ],
+      "originalTitle": "Bonds"
+    },
+    {
+      "title": "Forex",
+      "symbols": [
+        {
+          "s": "FX:EURUSD",
+          "d": "EUR to USD"
+        },
+        {
+          "s": "FX:GBPUSD",
+          "d": "GBP to USD"
+        },
+        {
+          "s": "FX:USDJPY",
+          "d": "USD to JPY"
+        },
+        {
+          "s": "FX:USDCHF",
+          "d": "USD to CHF"
+        },
+        {
+          "s": "FX:AUDUSD",
+          "d": "AUD to USD"
+        },
+        {
+          "s": "FX:USDCAD",
+          "d": "USD to CAD"
+        }
+      ],
+      "originalTitle": "Forex"
+    }
+  ]
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<script>
+ console.log('here');
+async function fetchStockData(symbol) {
+    const apiKey = '2W6HCONTP2AA05PX';
+    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data["Global Quote"];
+    } catch (error) {
+        console.error("Error fetching stock data:", error);
+    }
+}
+
+
+async function fetchAndUpdateTicker(symbols) {
+    const tickerDiv = document.getElementById('stockTicker');
+
+    for (let symbol of symbols) {
+        const stockData = await fetchStockData(symbol);
+        console.log(stockData);
+        const priceChange = parseFloat(stockData["09. change"]);
+        const colorClass = priceChange < 0 ? 'text-red-500' : 'text-green-500';
+        const tickerItem = document.createElement('div');
+        tickerItem.classList.add('ticker-item', 'inline-block', 'mr-8', colorClass);
+        tickerItem.innerHTML = `
+            <span class="font-bold">${symbol}:</span>
+            <span>${stockData["05. price"]}</span>
+        `;
+        tickerDiv.appendChild(tickerItem);
+    }
+}
+
+// Periodically check if more symbols need to be fetched based on scroll position
+function checkAndFetchSymbols(symbols) {
+    const tickerDiv = document.getElementById('stockTicker');
+    let lastSymbolIndex = 0;
+
+    const loadMoreSymbolsIfNeeded = () => {
+        // Simple example logic to load more symbols
+        // This could be enhanced to be more accurate based on visibility
+        if (tickerDiv.scrollWidth - (tickerDiv.offsetWidth + tickerDiv.scrollLeft) < 200) {
+            const nextSymbols = symbols.slice(lastSymbolIndex, lastSymbolIndex + 5);
+            lastSymbolIndex += 5;
+            fetchAndUpdateTicker(nextSymbols);
+            if (lastSymbolIndex >= symbols.length) {
+                lastSymbolIndex = 0; // Reset to loop
+            }
+        }
+    };
+
+    loadMoreSymbolsIfNeeded(); // Initial load
+    tickerDiv.addEventListener('scroll', loadMoreSymbolsIfNeeded);
+}
+
+
+const symbols = ['MSFT', 'AAPL', 'NVDA', 'AMZN', 'META', 'GOOGL', 'BRK.B', 
+                    'GOOG', 'LLY', 'AVGO', 'TSLA', 'JPM', 'UNH', 'V', 'XOM', 'MA', 
+                    'JNJ', 'PG', 'HD', 'MRK', 'COST', 'ABBV', 'AMD', 'CRM', 'CVX', 
+                    'NFLX', 'WMT', 'ADBE', 'KO', 'ACN', 'BAC', 'PEP', 'LIN', 'TMO', 
+                    'MCD', 'ABT', 'DIS', 'CSCO', 'WFC', 'INTU', 'INTC', 'ORCL', 'QCOM', 
+                    'VZ', 'CMCSA', 'IBM', 'AMAT', 'DHR', 'GE', 'CAT', 'UBER', 'NOW', 'PFE', 
+                    'UNP', 'AMGN', 'TXN', 'PM', 'SPGI', 'ISRG', 'BKNG', 'COP', 'LOW', 'HON', 
+                    'RTX', 'NKE', 'GS', 'LRCX', 'PLD', 'AXP', 'ELV', 'SYK', 'T', 'NEE', 'BA', 
+                    'BLK', 'ETN', 'TJX', 'MDT', 'PGR', 'VRTX', 'SBUX', 'MS', 'UPS', 'C', 'ADP', 
+                    'BMY', 'CB', 'REGN', 'MDLZ', 'MMC', 'CI', 'CVS', 'BSX', 'SCHW', 'ADI', 'DE', 
+                    'LMT', 'MU', 'KLAC', 'GILD', 'BX', 'ZTS', 'FI', 'SNPS', 'AMT', 'PANW', 'TMUS', 
+                    'CDNS', 'EQIX', 'ICE', 'CME', 'WM', 'SHW', 'CSX', 'SO', 'MO', 'CMG', 'DUK', 'ITW', 
+                    'CL', 'BDX', 'SLB', 'TGT', 'PH', 'MCK', 'EOG', 'ANET', 'ABNB', 'TDG', 'NOC', 'PSX', 
+                    'TT', 'USB', 'MPC', 'APH', 'AON', 'PYPL', 'ORLY', 'HCA', 'NXPI', 'GD', 'MAR', 'MCO', 
+                    'EMR', 'ROP', 'NSC', 'PNC', 'PCAR', 'FDX', 'ECL', 'FCX', 'MSI', 'ADSK', 'PXD', 'CTAS', 
+                    'GM', 'EW', 'AJG', 'LULU', 'WELL', 'HLT', 'APD', 'COF', 'MMM', 'TRV', 'AIG', 'ROST', 
+                    'SPG', 'AZO', 'F', 'VLO', 'IDXX', 'TFC', 'CCI', 'NUE', 'DXCM', 'MCHP', 'IQV', 
+                    'HUM', 'PSA', 'CARR', 'SRE', 'MSCI', 'URI', 'TEL', 'O', 'DHI', 'AEP', 'CPRT', 
+                    'OKE', 'MET', 'CNC', 'FTNT', 'CEG', 'BK', 'WMB', 'AFL', 'GWW', 'ALL', 'DLR', 'HES',
+                    'FAST', 'AME', 'KMB', 'AMP', 'MNST', 'SYY', 'LHX', 'PAYX', 'OXY', 'CTSH', 'STZ',
+                    'JCI', 'DOW', 'PRU', 'COR', 'ODFL', 'A', 'YUM', 'CTVA', 'LEN', 'D', 'FIS', 'GIS', 
+                    'OTIS', 'RSG', 'CMI', 'IR', 'EXC', 'NEM', 'MPWR', 'IT', 'EA', 'PCG', 'VRSK', 'EL',
+                    'GPN', 'GEHC', 'VMC', 'MLM', 'PWR', 'ON', 'PPG', 'CSGP', 'KMI', 'CDW', 'KVUE', 'MRNA',
+                    'XEL', 'EFX', 'BIIB', 'ROK', 'FICO', 'ACGL', 'FANG', 'HAL', 'KR', 'DG', 'VICI', 'KDP',
+                    'ED', 'DLTR', 'FTV', 'PEG', 'DD', 'DFS', 'XYL', 'EXR', 'CHTR', 'ANSS', 'BKR', 'HSY', 'KHC',
+                    'RCL', 'ADM', 'WTW', 'HIG', 'DVN', 'CBRE', 'DAL', 'ZBH', 'RMD', 'ULTA', 'WST', 'KEYS', 'CAH',
+                    'MTD', 'EIX', 'TSCO', 'HWM', 'HPQ', 'LYB', 'GLW', 'TROW', 'WAB', 'AVB', 'WEC', 'WY', 'CHD', 
+                    'TTWO', 'NVR', 'BR', 'MOH', 'STE', 'BLDR', 'AWK', 'EBAY', 'MTB', 'DOV', 'FITB', 'SBAC', 'ALGN',
+                    'PHM', 'STT', 'RJF', 'DTE', 'APTV', 'TRGP', 'ETR', 'ILMN', 'PTC', 'BAX', 'WBD', 'IRM', 'EQR',
+                    'CBOE', 'GRMN', 'GPC', 'LUV', 'ES', 'IFF', 'TDY', 'DRI', 'FLT', 'BRO', 'LVS', 'CTRA', 'PPL',
+                    'WAT', 'HUBB', 'COO', 'BALL', 'HPE', 'FE', 'AXON', 'NDAQ', 'INVH', 'STLD', 'CLX', 'ARE', 'VLTO',
+                    'HOLX', 'EXPE', 'LH', 'HBAN', 'J', 'AEE', 'TYL', 'NTAP', 'JBL', 'WDC', 'VTR', 'IEX', 'PFG',
+                    'CNP', 'CINF', 'EXPD', 'OMC', 'AVY', 'WRB', 'EPAM', 'FDS', 'VRSN', 'JBHT', 'MKC', 'LDOS', 'STX',
+                    'RF', 'ATO', 'ENPH', 'SWKS', 'MAS', 'TXT', 'CMS', 'NTRS', 'SYF', 'AKAM', 'VTRS', 'EG', 'TER',
+                    'PKG', 'WBA', 'FSLR', 'EQT', 'CCL', 'TRMB', 'CF', 'TSN', 'K', 'DPZ', 'LW', 'CE', 'UAL', 'ESS',
+                    'NDSN', 'MAA', 'POOL', 'BBY', 'HST', 'CFG', 'ZBRA', 'SNA', 'MRO', 'DGX', 'LKQ', 'ALB', 'PODD',
+                    'L', 'BG', 'SWK', 'KEY', 'CAG', 'AMCR', 'LYV', 'RVTY', 'SJM', 'JKHY', 'CRL', 'IPG', 'PNR', 'LNT',
+                    'GEN', 'KIM', 'IP', 'JNPR', 'ROL', 'NRG', 'TAP', 'MGM', 'EVRG', 'KMX', 'HII', 'ALLE', 'INCY',
+                    'TECH', 'TFX', 'WRK', 'QRVO', 'DAY', 'FFIV', 'UDR', 'TPR', 'GL', 'AES', 'BBWI', 'CTLT', 'NI',
+                    'MOS', 'BF.B', 'EMN', 'CPT', 'NWSA', 'HSIC', 'REG', 'UHS', 'AAL', 'AOS', 'WYNN', 'MTCH', 'AIZ',
+                    'APA', 'PEAK', 'BXP', 'PAYC', 'CZR', 'HRL', 'CHRW', 'ETSY', 'RHI', 'CPB', 'MKTX', 'PNW', 'BEN',
+                    'RL', 'FOXA', 'FRT', 'BWA', 'XRAY', 'BIO', 'IVZ', 'GNRC', 'NCLH', 'DVA', 'CMA', 'FMC', 'HAS', 
+                    'WHR', 'ZION', 'MHK', 'PARA', 'VFC', 'FOX', 'NWS']; // Add more symbols as needed
+                    
+fetchAndUpdateTicker(symbols.slice(0, 503));
+checkAndFetchSymbols(symbols);
+
+
+
+
+</script>
+</body>
+</html>
